@@ -68,7 +68,9 @@ returns_byhand <-
   (weigh_4 * asset4) + 
   (weigh_5 * asset5)
 
+#Comprobar los resultados 
 head(returns_byhand)
+
 ##########################################
 #Segunda forma de calcular la rentabilidad
 
