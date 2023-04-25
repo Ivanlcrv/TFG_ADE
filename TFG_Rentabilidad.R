@@ -3,7 +3,7 @@ library(tidyquant)
 library(timetk)
 
 #Simbolos de los activos
-symbols <- sort(c("BTC-USD", "SPY", "DBC", "XLK", "EWC"))
+symbols <- sort(c("BTC-USD", "SPY", "GLD", "MSFT", "BND"))
 
 #Sacar los precios de los activos
 prices <- 
