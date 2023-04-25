@@ -90,6 +90,7 @@ sd <-
 #Resultado en porcentaje y redondeo
 sd_percent <- round(sd * 100, 2)
 
+print(sd_percent)
 #########################################
 #Segunda forma de calcular la volatilidad
 
@@ -102,6 +103,7 @@ sd_matrix_algebra <- sqrt(t(weights) %*% cov_matrix %*% weights)
 #Resultado en porcentaje y redondeo
 sd_matrix_algebra_percent <- round(sd_matrix_algebra * 100, 2)
 
+print(sd_matrix_algebra_percent)
 #########################################
 #Tercera forma de calcular la volatilidad
 
@@ -111,6 +113,7 @@ portfolio_sd <- StdDev(portfolio, weights = weights)
 #Resultado en porcentaje y redondeo
 portfolio_sd_percent <- round(portfolio_sd * 100, 2)
 
+print(portfolio_sd_percent)
 #########################################
 #Sentido del proceso, comparativa con BTC
 
@@ -121,3 +124,5 @@ btc_sd <-StdDev(btc_return)
 
 #Resultado en porcentaje y redondeo
 btc_sd_percent <- round(btc_sd * 100, 2)
+
+print(btc_sd_percent)
