@@ -9,7 +9,7 @@ symbols <- sort(c("BTC-USD", "SPY", "GLD", "MSFT", "BND"))
 
 #Sacar los precios de los activos
 prices <- 
-  getSymbols(symbols, src = 'yahoo', from = "2020-01-01", auto.assign = TRUE, warnings = FALSE) %>% 
+  getSymbols(symbols, src = 'yahoo', from = "2018-01-01", auto.assign = TRUE, warnings = FALSE) %>% 
   lapply(function(sym) Cl(get(sym))) %>%
   do.call(merge, .) %>% 
   `colnames<-`(symbols) %>%

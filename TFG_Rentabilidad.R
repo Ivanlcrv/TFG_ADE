@@ -7,7 +7,7 @@ symbols <- sort(c("BTC-USD", "SPY", "GLD", "MSFT", "BND"))
 
 #Sacar los precios de los activos
 prices <- 
-  getSymbols(symbols, src = 'yahoo', from = "2020-01-01", auto.assign = TRUE, warnings = FALSE) %>% 
+  getSymbols(symbols, src = 'yahoo', from = "2018-01-01", auto.assign = TRUE, warnings = FALSE) %>% 
   lapply(function(sym) Cl(get(sym))) %>%
   do.call(merge, .) %>% 
   `colnames<-`(symbols) %>%
@@ -68,7 +68,7 @@ returns_byhand <-
   (weigh_4 * asset4) + 
   (weigh_5 * asset5)
 
-
+head(returns_byhand)
 ##########################################
 #Segunda forma de calcular la rentabilidad
 
