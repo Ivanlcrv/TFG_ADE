@@ -24,7 +24,6 @@ portfolio <-
   as.data.frame() %>%
   tibble::rownames_to_column(var = "date") %>% 
   mutate(date = as.Date(date)) %>%
-  select(date, everything()) %>%
   tidyr::pivot_longer(cols = -date, names_to = "asset", values_to = "return") %>%
   group_by(asset) %>%
   tq_transmute(select = return, mutate_fun = periodReturn, period = "monthly", col_rename = "return_monthly") %>%

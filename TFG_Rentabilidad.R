@@ -113,4 +113,4 @@ returns_tq_rebalanced_yearly <-
 
 
 #Comprobar los retornos reequilibrado por años
-head(returns_tq_rebalanced_monthly)
+head(returns_tq_rebalanced_yearly)
