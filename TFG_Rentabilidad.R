@@ -133,12 +133,29 @@ df_returns <- data.frame(Date = index(returns_byhand),
                          returns = coredata(returns_byhand),
                          BTC.USD = coredata(btc_return))
 
-# Crear el gráfico de evolución de los rendimientos
+# Crear el gráfico de evolución de los rendimientos 
 ggplot(data = df_returns, aes(x = Date)) +
-  geom_line(aes(y = returns, color = "Returns by Hand")) +
+  geom_line(aes(y = returns, color = "Returns")) +
   geom_line(aes(y = BTC.USD, color = "BTC Return")) +
   labs(title = "Evolución de los Rendimientos",
        x = "Fecha",
        y = "Rendimiento") +
-  scale_color_manual(values = c("Returns by Hand" = "blue", "BTC Return" = "red")) +
+  scale_color_manual(values = c("Returns" = "blue", "BTC Return" = "red")) +
+  theme_minimal()
+
+#Grafico 2
+
+# Convertir los datos a un data frame
+df_returns_yearly <- data.frame(Date = index(returns_xts_rebalanced_yearly),
+                         returns = coredata(returns_xts_rebalanced_yearly),
+                         BTC.USD = coredata(btc_return))
+
+# Crear el gráfico de evolución de los rendimientos con rebalanceo anual
+ggplot(data = df_returns_yearly, aes(x = Date)) +
+  geom_line(aes(y = returns, color = "Returns rebalanced yearly")) +
+  geom_line(aes(y = BTC.USD, color = "BTC Return")) +
+  labs(title = "Evolución de los Rendimientos",
+       x = "Fecha",
+       y = "Rendimiento") +
+  scale_color_manual(values = c("Returns rebalanced yeatly" = "blue", "BTC Return" = "red")) +
   theme_minimal()
