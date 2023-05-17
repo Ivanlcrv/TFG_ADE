@@ -9,7 +9,7 @@ symbols <- sort(c("BTC-USD", "SPY", "GLD", "MSFT", "BND"))
 
 #Sacar los precios de los activos
 prices <- 
-  getSymbols(symbols, src = 'yahoo', from = "2018-01-01", auto.assign = TRUE, warnings = FALSE) %>% 
+  getSymbols(symbols, src = 'yahoo', from = "2020-01-01", auto.assign = TRUE, warnings = FALSE) %>% 
   lapply(function(sym) Cl(get(sym))) %>%
   do.call(merge, .) %>% 
   `colnames<-`(symbols) %>%
@@ -126,7 +126,9 @@ btc_sd_percent <- round(btc_sd * 100, 2)
 
 print(btc_sd_percent)
 
+#########################################
 #Grafico
+
 sd_values <- c(sd_percent, sd_matrix_algebra_percent, portfolio_sd_percent, btc_sd_percent)
 colors <- c("red", "blue", "green", "yellow")
 

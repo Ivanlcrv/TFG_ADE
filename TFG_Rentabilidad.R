@@ -1,13 +1,14 @@
 library(tidyverse)
 library(tidyquant)
 library(timetk)
+library(ggplot2)
 
 #Simbolos de los activos
 symbols <- sort(c("BTC-USD", "SPY", "GLD", "MSFT", "BND"))
 
 #Sacar los precios de los activos
 prices <- 
-  getSymbols(symbols, src = 'yahoo', from = "2018-01-01", auto.assign = TRUE, warnings = FALSE) %>% 
+  getSymbols(symbols, src = 'yahoo', from = "2020-01-01", auto.assign = TRUE, warnings = FALSE) %>% 
   lapply(function(sym) Cl(get(sym))) %>%
   do.call(merge, .) %>% 
   `colnames<-`(symbols) %>%
@@ -68,6 +69,8 @@ returns_byhand <-
   (weigh_4 * asset4) + 
   (weigh_5 * asset5)
 
+names(returns_byhand) <- "returns"
+
 #Comprobar los resultados 
 head(returns_byhand)
 
@@ -114,3 +117,28 @@ returns_tq_rebalanced_yearly <-
 
 #Comprobar los retornos reequilibrado por años
 head(returns_tq_rebalanced_yearly)
+
+#########################################
+#Sentido del proceso, comparativa con BTC
+
+btc_return <- returns_xts[,"BTC-USD"]
+
+print(btc_return)
+
+#########################################
+#Grafico
+
+# Convertir los datos a un data frame
+df_returns <- data.frame(Date = index(returns_byhand),
+                         returns = coredata(returns_byhand),
+                         BTC.USD = coredata(btc_return))
+
+# Crear el gráfico de evolución de los rendimientos
+ggplot(data = df_returns, aes(x = Date)) +
+  geom_line(aes(y = returns, color = "Returns by Hand")) +
+  geom_line(aes(y = BTC.USD, color = "BTC Return")) +
+  labs(title = "Evolución de los Rendimientos",
+       x = "Fecha",
+       y = "Rendimiento") +
+  scale_color_manual(values = c("Returns by Hand" = "blue", "BTC Return" = "red")) +
+  theme_minimal()
