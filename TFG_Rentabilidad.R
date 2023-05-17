@@ -152,10 +152,10 @@ df_returns_yearly <- data.frame(Date = index(returns_xts_rebalanced_yearly),
 
 # Crear el gráfico de evolución de los rendimientos con rebalanceo anual
 ggplot(data = df_returns_yearly, aes(x = Date)) +
-  geom_line(aes(y = returns, color = "Returns rebalanced yearly")) +
+  geom_line(aes(y = returns, color = "Returns y")) +
   geom_line(aes(y = BTC.USD, color = "BTC Return")) +
   labs(title = "Evolución de los Rendimientos",
        x = "Fecha",
        y = "Rendimiento") +
-  scale_color_manual(values = c("Returns rebalanced yeatly" = "blue", "BTC Return" = "red")) +
+  scale_color_manual(values = c("Returns y" = "blue", "BTC Return" = "red")) +
   theme_minimal()
