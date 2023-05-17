@@ -125,3 +125,12 @@ btc_sd <-StdDev(btc_return)
 btc_sd_percent <- round(btc_sd * 100, 2)
 
 print(btc_sd_percent)
+
+#Grafico
+sd_values <- c(sd_percent, sd_matrix_algebra_percent, portfolio_sd_percent, btc_sd_percent)
+colors <- c("red", "blue", "green", "yellow")
+
+barplot(sd_values, col = colors, ylim = c(0, max(sd_values) + 6), ylab = "Sd values")
+
+text(x = 1:length(sd_values), y = sd_values, labels = sd_values, pos = 3, col = "black")
+legend("topright", legend = c("Sd", "Sd Matrix", "Sd PerformanceAnalytics", "Sd BTC"), fill = colors)
