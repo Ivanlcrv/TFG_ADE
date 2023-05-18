@@ -159,3 +159,32 @@ ggplot(data = df_returns_yearly, aes(x = Date)) +
        y = "Rendimiento") +
   scale_color_manual(values = c("Returns y" = "blue", "BTC Return" = "red")) +
   theme_minimal()
+
+#Grafico 3 
+
+spy_return <- returns_xts[,"SPY"]
+gld_return <- returns_xts[,"GLD"]
+msft_return <- returns_xts[,"MSFT"]
+bnd_return <- returns_xts[,"BND"]
+
+# Convertir los datos a un data frame
+df_returns_assets <- data.frame(Date = index(returns_xts),
+                                BTC.USD = coredata(btc_return),
+                                SPY = coredata(spy_return),
+                                GLD = coredata(gld_return),
+                                MSFT = coredata(msft_return),
+                                BND = coredata(bnd_return))
+
+# Crear el gráfico de los rendimientos
+ggplot(data = df_returns_assets, aes(x = Date)) +
+  geom_line(aes(y = BTC.USD, color = "BTC Return")) +
+  geom_line(aes(y = SPY, color = "SPY Return")) +
+  geom_line(aes(y = GLD, color = "GLD Return")) +
+  geom_line(aes(y = MSFT, color = "MSFT Return")) +
+  geom_line(aes(y = BND, color = "BND Return")) +
+  labs(title = "Evolución de los Rendimientos",
+       x = "Fecha",
+       y = "Rendimiento") +
+  scale_color_manual(values = c("BTC Return" = "red", "SPY Return" = "blue", "GLD Return" = "green", 
+                                "MSFT Return" = "yellow", "BND Return" = "brown")) +
+  theme_minimal()
