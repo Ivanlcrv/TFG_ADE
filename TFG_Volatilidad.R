@@ -136,3 +136,39 @@ barplot(sd_values, col = colors, ylim = c(0, max(sd_values) + 6), ylab = "Sd val
 
 text(x = 1:length(sd_values), y = sd_values, labels = sd_values, pos = 3, col = "black")
 legend("topright", legend = c("Sd", "Sd Matrix", "Sd PerformanceAnalytics", "Sd BTC"), fill = colors)
+
+#########################################
+#Volatilidad resto de los activos
+
+spy_return <- portfolio[,"SPY"]
+gld_return <- portfolio[,"GLD"]
+msft_return <- portfolio[,"MSFT"]
+bnd_return <- portfolio[,"BND"]
+
+#Desviación típica
+spy_sd <-StdDev(spy_return)
+gld_sd <-StdDev(gld_return)
+msft_sd <-StdDev(msft_return)
+bnd_sd <-StdDev(bnd_return)
+
+#Resultado en porcentaje y redondeo
+spy_sd_percent <- round(spy_sd * 100, 2)
+gld_sd_percent <- round(gld_sd * 100, 2)
+msft_sd_percent <- round(msft_sd * 100, 2)
+bnd_sd_percent <- round(bnd_sd * 100, 2)
+
+print(spy_sd_percent)
+print(gld_sd_percent)
+print(msft_sd_percent)
+print(bnd_sd_percent)
+
+#########################################
+#Grafico sd activos
+
+sd_values <- c(btc_sd_percent, spy_sd_percent, gld_sd_percent, msft_sd_percent, bnd_sd_percent)
+colors <- c("red", "blue", "green", "yellow", "pink")
+
+barplot(sd_values, col = colors, ylim = c(0, max(sd_values) + 6), ylab = "Sd values")
+
+text(x = 1:length(sd_values), y = sd_values, labels = sd_values, pos = 3, col = "black")
+legend("topright", legend = c("BTC", "SPY", "GLD", "MSFT", "BND"), fill = colors)
